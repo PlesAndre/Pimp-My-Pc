@@ -6,7 +6,6 @@ import { router as componentsRouter } from "./routes/singleComponentsRoutes.js";
 import { router as setupRouter } from "./routes/completeSetupRoutes.js";
 
 const server = express();
-
 server.use(express.json());
 server.use(cors());
 connectDB();
@@ -17,6 +16,7 @@ server.get("/", (req, res) => {
   res.send("Sei connesso alla mia backend");
 });
 
+// Chiamata delle queries tramite le funzioni dichiarate
 server.use("/api/components", componentsRouter);
 server.use("/api/setups", setupRouter);
 
