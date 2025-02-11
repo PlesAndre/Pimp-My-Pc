@@ -1,0 +1,14 @@
+.img-payment {
+  width: 50px;
+  margin: 2px;
+}
+
+.container-payments {
+  background-color: white;
+  border-radius: 40px;
+}
+
+.custom-footer {
+  background: #181818;
+  color: white;
+}
