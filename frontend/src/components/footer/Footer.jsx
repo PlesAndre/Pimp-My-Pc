@@ -1,15 +1,15 @@
 import React from "react";
 import logo from "../../assets/logo.png";
-import visa from "../../assets/img_paymets/visa.png";
-import mastercard from "../../assets/img_paymets/mastercard.png";
-import paypal from "../../assets/img_paymets/paypal.png";
+import visa from "../../assets/img_pagamenti/visa.png";
+import mastercard from "../../assets/img_pagamenti/mastercard.png";
+import paypal from "../../assets/img_pagamenti/paypal.png";
 import { Container, Col } from "react-bootstrap";
 import "./style.css";
 
 export default function Footer() {
   return (
     <Container fluid>
-      <footer className="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top custom-footer">
+      <footer className="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 mt-5 custom-footer">
         <Col className="text-center ms-5">
           <div className="mb-2">
             <img src={logo} style={{ width: "100px" }} alt="logo" />
@@ -31,8 +31,7 @@ export default function Footer() {
 
         <Col className="text-center">
           <div>
-            <h5>Section</h5>
-            <ul class="nav flex-column">
+            <ul className="nav flex-column">
               <li className="p-0">Termini e condizioni</li>
               <li className="p-0">Features</li>
               <li className="p-0">Informativa</li>
@@ -44,8 +43,7 @@ export default function Footer() {
 
         <Col className="text-center">
           <div>
-            <h5>Section</h5>
-            <ul class="nav flex-column">
+            <ul className="nav flex-column">
               <li className="p-0">Contattaci</li>
               <li className="p-0">Garanzia</li>
               <li className="p-0">Modalità di reso</li>
