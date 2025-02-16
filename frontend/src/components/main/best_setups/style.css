@@ -1,0 +1,105 @@
+.container-best-setups {
+  background: linear-gradient(
+    45deg,
+    #1a1a1a,
+    #0e0e0e,
+    #2a2a2a,
+    #ff00ff,
+    #00ffff
+  );
+
+  background: linear-gradient(45deg, #2a2a2a, #0f0f0f, #8a00d4, #00c3ff);
+  color: #fff;
+  margin-top: 2rem;
+  border-radius: 50px;
+}
+
+.container-best-setups .row {
+  padding: 2em 2em 0 2em;
+}
+
+.scroll-container {
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  gap: 2rem;
+  padding-bottom: 20px;
+}
+
+.scroll-container::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: #babac0; /* Colore del thumb */
+  border-radius: 12px;
+}
+
+.setup-wrapper {
+  background-color: #ffffff;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  max-width: 350px;
+  margin-top: 50px;
+}
+
+.setup-wrapper:hover {
+  transform: scale(1.02);
+}
+
+.setup-title {
+  background: black;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
+  font-size: 1.4rem;
+}
+
+.img-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.setup-image {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.price-container {
+  background-color: #3498db;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  width: 50%;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.price-text {
+  color: white;
+  font-weight: bold;
+}
+
+.price-symbol {
+  color: #ecf0f1;
+  font-weight: bold;
+}
+
+.products-points-holder ul {
+  list-style-type: none;
+  padding: 0;
+}

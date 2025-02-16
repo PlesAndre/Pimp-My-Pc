@@ -13,16 +13,12 @@
 p {
   font-size: 20px;
 }
-
-.container-setups {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 2rem;
+.custom-carousel {
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.container-setups .row {
-  display: flex;
-  justify-content: center;
-  gap: 0 5rem;
+.carousel-img {
+  height: 700px;
+  border-radius: 10px;
 }
