@@ -43,7 +43,7 @@ const deleteComponent = async (req, res, next) => {
 const getComponentById = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const component = await Components.findById({ _id: id });
+    const component = await Components.findById(id);
     res.json(component);
     return component;
   } catch (error) {

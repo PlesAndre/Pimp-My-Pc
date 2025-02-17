@@ -42,7 +42,7 @@ const deleteSetup = async (req, res, next) => {
 const getSetupById = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const getSetup = await PcSetup.findById({ _id: id });
+    const getSetup = await PcSetup.findById(id);
     res.json(getSetup);
     return getSetup;
   } catch (error) {

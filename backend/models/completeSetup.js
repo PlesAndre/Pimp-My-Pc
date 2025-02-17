@@ -8,7 +8,12 @@ const setupSchema = new mongoose.Schema({
   image: String,
   ratings: String,
   stock: Number,
-  components: [{ type: mongoose.Schema.Types.ObjectId, ref: "Components" }],
+  components: [
+    {
+      name: String,
+      description: String,
+    },
+  ],
 });
 
 const PcSetup = mongoose.model("complete_setups", setupSchema);
