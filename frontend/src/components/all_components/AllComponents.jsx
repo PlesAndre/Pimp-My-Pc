@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card, Button, Row, Col, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./style.css";
 
 export default function AllComponents() {
   const [components, setComponents] = useState([]);
@@ -20,41 +21,39 @@ export default function AllComponents() {
   }, []);
 
   return (
-    <Container className="mt-5">
-      <h2>Tutti i Componenti</h2>
+    <Container className="mt-5 container-components">
+      <h2 className="text-center mb-4 text-light">I NOSTRI COMPONENTI</h2>
       <Row>
         {components.map((component) => (
-          <Col md={4} key={component.name} className="mb-4">
-            <Card>
+          <Col md={6} key={component._id} className="mb-4 mt-5">
+            <Card className="ecommerce-card shadow-sm border-0 rounded">
               <Card.Img
                 variant="top"
                 src={component.image}
                 alt={component.name}
+                className="card-image-components"
               />
-              <Card.Body>
-                <Card.Title>{component.name}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">
-                  {component.brand}
-                </Card.Subtitle>
-                <Card.Text>
-                  <strong>Description:</strong> {component.description}
+              <Card.Body className="d-flex flex-column">
+                <Card.Title className="text-center font-weight-bold">
+                  {component.name}
+                </Card.Title>
+                <Card.Text className="text-center text-light w-25 price-container">
+                  {" "}
+                  ${component.price}
                 </Card.Text>
-                <Card.Text>
-                  <strong>Price:</strong> ${component.price}
+                <Card.Text className="text-center text-success mb-3">
+                  <strong>Stocks:</strong> {component.stock} items available
                 </Card.Text>
-                <Card.Text>
-                  <strong>Ratings:</strong> {component.ratings} / 5
-                </Card.Text>
-                <Card.Text>
-                  <strong>Stock:</strong> {component.stock} items available
-                </Card.Text>
-                <Button
-                  as={Link}
-                  to={`/components/${component._id}`}
-                  variant="primary"
-                >
-                  View Details
-                </Button>
+                <div className="d-flex justify-content-center mt-auto">
+                  <Button
+                    as={Link}
+                    to={`/components/${component._id}`}
+                    variant="primary"
+                    className="w-100 ecommerce-button"
+                  >
+                    View Details
+                  </Button>
+                </div>
               </Card.Body>
             </Card>
           </Col>

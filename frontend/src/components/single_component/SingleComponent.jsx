@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Card, Button, Container } from "react-bootstrap";
+import "./style.css";
 
 export default function SingleComponent() {
   const { id } = useParams();
@@ -31,27 +32,31 @@ export default function SingleComponent() {
   }
 
   return (
-    <Container className="mt-5">
-      <Card>
-        <Card.Img variant="top" src={component.image} alt={component.name} />
+    <Container className="mt-5 container-component">
+      <Card className="product-card shadow-sm">
+        <Card.Img
+          variant="top"
+          src={component.image}
+          alt={component.name}
+          className="card-img-top"
+        />
         <Card.Body>
-          <Card.Title>{component.name}</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">
-            {component.brand}
-          </Card.Subtitle>
-          <Card.Text>
-            <strong>Description:</strong> {component.description}
+          <Card.Title className="product-title">{component.name}</Card.Title>
+          <Card.Text className="product-description">
+            {component.description}
           </Card.Text>
-          <Card.Text>
-            <strong>Price:</strong> ${component.price}
+          <Card.Text className="text-primary">
+            <strong>Prezzo:</strong> ${component.price}
           </Card.Text>
-          <Card.Text>
-            <strong>Ratings:</strong> {component.ratings} / 5
+          <Card.Text className="text-warning">
+            <strong>Valutazione:</strong> {component.ratings} / 5
           </Card.Text>
-          <Card.Text>
-            <strong>Stock:</strong> {component.stock} items available
+          <Card.Text className="text-success mb-4">
+            <strong>Stocks:</strong> {component.stock} items available
           </Card.Text>
-          <Button variant="primary">Buy Now</Button>
+          <Button variant="primary" className="btn-ecommerce">
+            AGGIUNGI AL CARRELLO
+          </Button>
         </Card.Body>
       </Card>
     </Container>

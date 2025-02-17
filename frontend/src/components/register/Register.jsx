@@ -17,7 +17,7 @@ export default function Register({ show, handleClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Dati inviati:", formData);
-    handleClose(); // Chiude la modale dopo l'invio
+    handleClose();
   };
 
   return (

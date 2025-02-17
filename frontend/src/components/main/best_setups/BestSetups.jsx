@@ -5,54 +5,47 @@ import "./style.css";
 export default function BestSetups() {
   const [setups, setSetups] = useState([]);
 
-  // Funzione per ottenere i setup
   const fetchSetups = async () => {
     try {
       const response = await fetch("http://localhost:3001/api/setups");
       const data = await response.json();
-      setSetups(data); // Imposta i setup
+      setSetups(data);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchSetups(); // Chiamata API per ottenere i setup
+    fetchSetups();
   }, []);
 
   return (
-    <Container className="container-best-setups">
+    <Container className="container-best-setups mt-5">
       <Row>
         <h2 className="text-center mt-2">CONFIGURAZIONI MIGLIORI</h2>
         <div className="scroll-container mb-4">
-          {/* Mostra solo le prime 6 configurazioni */}
-          {setups.slice(0, 6).map((setup, index) => (
-            <Col xs={4} key={index}>
-              <Card className="setup-wrapper w-100">
+          {setups.slice(0, 4).map((setup, index) => (
+            <Col xs={12} sm={6} md={4} key={index}>
+              <Card className="setup-wrapper d-flex flex-column">
                 <div className="setup-text">
-                  {/* Rendi sicuro che setup.name sia una stringa */}
                   <p>{setup.name}</p>
                 </div>
 
                 <div className="img-wrapper">
-                  {/* Controlla che setup.image sia una stringa */}
                   <img
-                    src={setup.image || "default-image.jpg"} // Usa un'immagine di default in caso di mancanza
-                    alt={setup.name || "Default Setup"} // Usa un alt di default
+                    src={setup.image || "default-image.jpg"}
+                    alt={setup.name || "Default Setup"}
                     className="setup-image"
                   />
                 </div>
 
                 <div className="price-container">
-                  <span className="price-text">prezzo</span>
+                  <span className="price-text">{setup.price || "N/A"}</span>
                   <span className="price-symbol">€</span>
-                  {/* Controlla che setup.price sia un numero */}
-                  <span className="price-value">{setup.price || "N/A"}</span>
                 </div>
 
                 <div className="products-points-holder mt-3 text-center">
-                  <ul className="list-disc pl-5 text-gray-700">
-                    {/* Verifica che components sia un array e non vuoto */}
+                  <ul className="setup-components">
                     {Array.isArray(setup.components) &&
                     setup.components.length > 0 ? (
                       setup.components.map((component, index) => (

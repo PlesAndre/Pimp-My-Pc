@@ -31,13 +31,12 @@
 }
 
 .scroll-container::-webkit-scrollbar-thumb {
-  background-color: #babac0; /* Colore del thumb */
+  background-color: #babac0;
   border-radius: 12px;
 }
 
 .setup-wrapper {
   background-color: #ffffff;
-  background: white;
   border-radius: 12px;
   padding: 20px;
   text-align: center;
@@ -45,6 +44,9 @@
   transition: transform 0.2s ease-in-out;
   max-width: 350px;
   margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .setup-wrapper:hover {
@@ -95,11 +97,45 @@
 }
 
 .price-symbol {
-  color: #ecf0f1;
+  color: white;
   font-weight: bold;
 }
 
 .products-points-holder ul {
   list-style-type: none;
   padding: 0;
+}
+
+.products-points-holder {
+  max-height: 280px;
+  overflow-y: auto;
+  padding: 0 15px;
+}
+
+.setup-components {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.setup-components li {
+  font-size: 0.9rem;
+  background-color: #f0f0f0;
+  margin-bottom: 8px;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.setup-components::-webkit-scrollbar {
+  width: 8px;
+}
+
+.setup-components::-webkit-scrollbar-thumb {
+  background-color: #babac0;
+  border-radius: 12px;
+}
+
+.setup-components::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
 }

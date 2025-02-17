@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Card, Button, Container } from "react-bootstrap";
+import "./style.css";
 
 export default function SingleSetup() {
-  const { id } = useParams(); // Ottieni l'ID dalla URL
+  const { id } = useParams();
   const [setup, setSetup] = useState(null);
 
   const fetchSetupDetails = async () => {
@@ -29,31 +30,31 @@ export default function SingleSetup() {
   }
 
   return (
-    <Container className="mt-5">
-      <Card>
-        <Card.Img variant="top" src={setup.image} alt={setup.name} />
+    <Container className="mt-5 container-setup">
+      <Card className="product-card shadow-sm">
+        <Card.Img
+          variant="top"
+          src={setup.image}
+          alt={setup.name}
+          className="card-img-top-setup"
+        />
         <Card.Body>
-          <Card.Title>{setup.name}</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">
-            {setup.category}
-          </Card.Subtitle>
-          <div>
-            {" "}
-            {/* Usa div invece di Card.Text */}
-            <strong>Description:</strong> {setup.description}
-          </div>
-          <div>
-            <strong>Price:</strong> ${setup.price}
-          </div>
-          <div>
-            <strong>Ratings:</strong> {setup.ratings} / 5
-          </div>
-          <div>
-            <strong>Stock:</strong> {setup.stock} items available
-          </div>
-          <div>
-            <strong>Components:</strong>
-            <ul>
+          <Card.Title className="product-title">{setup.name}</Card.Title>
+          <Card.Text className="product-description mb-3">
+            {setup.description}
+          </Card.Text>
+          <Card.Text className="text-primary mb-3">
+            <strong>Prezzo:</strong> €{setup.price}
+          </Card.Text>
+          <Card.Text className="text-warning mb-3">
+            <strong>Valutazione:</strong> {setup.ratings} / 5
+          </Card.Text>
+          <Card.Text className="text-success mb-3">
+            <strong>Stocks:</strong> {setup.stock} pezzi disponibili
+          </Card.Text>
+          <div className="product-components mb-3">
+            <strong>Scheda Tecnica:</strong>
+            <ul className="mt-1">
               {setup.components.map((component, index) => (
                 <li key={index}>
                   <strong>{component.name}</strong>: {component.description}
@@ -61,7 +62,9 @@ export default function SingleSetup() {
               ))}
             </ul>
           </div>
-          <Button variant="primary">Buy Now</Button>
+          <Button variant="primary" className="btn-ecommerce">
+            AGGIUNGI AL CARRELLO
+          </Button>
         </Card.Body>
       </Card>
     </Container>

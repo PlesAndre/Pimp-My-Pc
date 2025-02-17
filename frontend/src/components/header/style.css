@@ -14,3 +14,13 @@
   font-size: 22px !important;
   color: #99f8f8 !important;
 }
+
+.navbar-toggler-light {
+  background-color: #9005b3 !important;
+  border-color: #ddd !important;
+  margin-right: 10px;
+}
+
+.navbar-toggler-light .navbar-toggler-icon {
+  background-color: #9005b3 !important;
+}

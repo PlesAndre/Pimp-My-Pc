@@ -5,18 +5,18 @@ import Navbar from "react-bootstrap/Navbar";
 import logo from "../../assets/logo.png";
 import "./style.css";
 import { Link } from "react-router-dom";
-// import Link from "react-router-dom";
 
 export default function Header() {
   return (
     <Navbar expand="lg" className="custom-navbar">
       <Container>
-        {/* <Link to="/"> */}
         <Navbar.Brand className="p-0">
           <img className="logo-brand" src={logo} alt="logo" />
         </Navbar.Brand>
-        {/* </Link> */}
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle
+          aria-controls="basic-navbar-nav"
+          className="navbar-toggler-light"
+        />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="d-flex justify-content-around w-100">
             <Nav.Link as={Link} to="/">

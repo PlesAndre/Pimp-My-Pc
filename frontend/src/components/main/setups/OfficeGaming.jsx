@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 
 export default function OfficeGaming() {
   return (
-    <Container className="container-setups">
-      <Row>
+    <Container className="container-setups mt-5">
+      <Row className="mb-3">
         <h2 className="text-center mt-2">PC DESKTOP PERSONALIZZATI</h2>
         <Col>
           <Card className="setup-card border-0">
