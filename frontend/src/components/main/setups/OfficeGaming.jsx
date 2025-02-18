@@ -3,8 +3,8 @@ import gaming from "../../../assets/img_setups/gaming_setup.jpeg";
 import office from "../../../assets/img_setups/office_setup.jpeg";
 import workstation from "../../../assets/img_setups/workstation.jpeg";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import "./style.css";
 import { Link } from "react-router-dom";
+import "./style.css";
 
 export default function OfficeGaming() {
   return (
@@ -24,7 +24,11 @@ export default function OfficeGaming() {
                 </ul>
               </div>
               <div className="d-flex justify-content-center">
-                <Button as={Link} to="/setups" variant="primary">
+                <Button
+                  as={Link}
+                  to="/setups?category=ufficio"
+                  variant="primary"
+                >
                   SCOPRI I SETUP
                 </Button>
               </div>
@@ -44,7 +48,11 @@ export default function OfficeGaming() {
                 </ul>
               </div>
               <div className="d-flex justify-content-center">
-                <Button as={Link} to="/setups" variant="primary">
+                <Button
+                  as={Link}
+                  to="/setups?category=gaming"
+                  variant="primary"
+                >
                   SCOPRI I SETUP
                 </Button>
               </div>
@@ -64,7 +72,11 @@ export default function OfficeGaming() {
                 </ul>
               </div>
               <div className="d-flex justify-content-center">
-                <Button as={Link} to="/setups" variant="primary">
+                <Button
+                  as={Link}
+                  to="/setups?category=workstation"
+                  variant="primary"
+                >
                   SCOPRI I SETUP
                 </Button>
               </div>

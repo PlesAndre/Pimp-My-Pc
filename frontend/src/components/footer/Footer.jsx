@@ -3,7 +3,8 @@ import logo from "../../assets/logo.png";
 import visa from "../../assets/img_pagamenti/visa.png";
 import mastercard from "../../assets/img_pagamenti/mastercard.png";
 import paypal from "../../assets/img_pagamenti/paypal.png";
-import { Container, Col } from "react-bootstrap";
+import cv from "../../assets/cv/Plescan Andrei Leonard - CV.pdf";
+import { Container, Col, Button } from "react-bootstrap";
 import "./style.css";
 
 export default function Footer() {
@@ -27,6 +28,14 @@ export default function Footer() {
 
         <Col className="text-center mb-4">
           <h5>Founder</h5>
+          <Button
+            variant="primary"
+            href={cv}
+            target="_blank"
+            size="lg"
+          >
+            Visualizza il mio CV
+          </Button>
         </Col>
 
         <Col className="text-center mb-4">

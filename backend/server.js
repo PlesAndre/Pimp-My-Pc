@@ -24,12 +24,16 @@ server.use("/api/components", componentsRouter);
 server.use("/api/setups", setupRouter);
 
 const generateToken = (userId) => {
-  return jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: "1h" });
+  const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
+    expiresIn: "1h",
+  });
+  return token;
 };
 
 server.post("/register", async (req, res) => {
   try {
     const { firstname, lastname, email, password } = req.body;
+
     if (!firstname || !lastname || !email || !password) {
       return res
         .status(400)
@@ -53,19 +57,22 @@ server.post("/register", async (req, res) => {
     });
 
     const token = generateToken(newUser._id);
-    res
+
+    return res
       .status(201)
       .json({ message: "Registrazione avvenuta con successo", token });
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    return res.status(500).json({ message: "Errore interno del server" });
   }
 });
 
 server.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
+
     if (!(email && password)) {
-      res.status(400).json("Campi obbligatori");
+      return res.status(400).json({ message: "Campi obbligatori" });
     }
 
     const currentUser = await User.findOne({ email });
@@ -79,8 +86,14 @@ server.post("/login", async (req, res) => {
     }
 
     const token = generateToken(currentUser._id);
-    res.status(200).json({ message: "Login effettuato con successo", token });
-  } catch (error) {}
+
+    return res
+      .status(200)
+      .json({ message: "Login effettuato con successo", token });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Errore interno del server" });
+  }
 });
 
 server.listen(port, () => {
