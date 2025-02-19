@@ -29,17 +29,19 @@ const generateToken = (userId) => {
   });
   return token;
 };
-
 server.post("/register", async (req, res) => {
   try {
-    const { firstname, lastname, email, password } = req.body;
+    // Estrazione dei dati dalla richiesta
+    const { firstname, lastname, email, password, role = "user" } = req.body;
 
+    // Verifica che tutti i campi siano stati inviati
     if (!firstname || !lastname || !email || !password) {
       return res
         .status(400)
         .json({ message: "Tutti i campi sono obbligatori" });
     }
 
+    // Verifica che l'utente non esista già
     const checkUser = await User.findOne({ email });
     if (checkUser) {
       return res
@@ -47,22 +49,34 @@ server.post("/register", async (req, res) => {
         .json({ message: "Utente già presente con questa email" });
     }
 
+    // Se il ruolo non è 'user' o 'admin', rifiuta la richiesta
+    if (role !== "user" && role !== "admin") {
+      return res
+        .status(400)
+        .json({ message: "Ruolo non valido, deve essere 'user' o 'admin'" });
+    }
+
+    // Cripta la password
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // Crea un nuovo utente con il ruolo specificato (o "user" se non specificato)
     const newUser = await User.create({
       firstname,
       lastname,
       email,
       password: hashedPassword,
+      role, // Aggiungi il ruolo (default: 'user')
     });
 
-    const token = generateToken(newUser._id);
+    // Genera un token JWT per il nuovo utente
+    const token = generateToken(newUser._id, newUser.role);
 
+    // Restituisci il token come risposta
     return res
       .status(201)
       .json({ message: "Registrazione avvenuta con successo", token });
   } catch (error) {
-    console.error(error);
+    console.error(error); // Log dell'errore per il debug
     return res.status(500).json({ message: "Errore interno del server" });
   }
 });
@@ -85,11 +99,15 @@ server.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Password errata" });
     }
 
+    // Genera il token (presumibilmente una funzione che crea un JWT)
     const token = generateToken(currentUser._id);
 
-    return res
-      .status(200)
-      .json({ message: "Login effettuato con successo", token });
+    // Restituisce il token e il ruolo dell'utente (admin o user)
+    return res.status(200).json({
+      message: "Login effettuato con successo",
+      token,
+      role: currentUser.role, // Aggiungi il ruolo all'interno della risposta
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Errore interno del server" });

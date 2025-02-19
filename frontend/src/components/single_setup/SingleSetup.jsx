@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Card, Button, Container } from "react-bootstrap";
-import "./style.css";
+import { CartContext } from "../../context/context";
+import "./single_setup.css";
 
 export default function SingleSetup() {
   const { id } = useParams();
   const [setup, setSetup] = useState(null);
+  const { addToCart } = useContext(CartContext);
 
   const fetchSetupDetails = async () => {
     try {
@@ -31,7 +33,7 @@ export default function SingleSetup() {
 
   return (
     <Container className="mt-5 container-setup">
-      <Card className="product-card shadow-sm">
+      <Card className="product-card">
         <Card.Img
           variant="top"
           src={setup.image}
@@ -62,7 +64,11 @@ export default function SingleSetup() {
               ))}
             </ul>
           </div>
-          <Button variant="primary" className="btn-ecommerce">
+          <Button
+            variant="primary"
+            className="btn-ecommerce"
+            onClick={() => addToCart(setup.image, setup.name, setup.price)}
+          >
             AGGIUNGI AL CARRELLO
           </Button>
         </Card.Body>

@@ -17,7 +17,7 @@
 }
 
 .card-img-top-setup {
-  height: 600px;
+  height: 500px;
   object-fit: cover;
   border-radius: 15px;
   transition: transform 0.3s ease-in-out;

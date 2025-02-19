@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -8,37 +8,47 @@ import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import logo from "../../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
-import "./style.css";
+import "./header.css";
+import { CartContext } from "../../context/context";
 
 export default function Header() {
   const [showCart, setShowCart] = useState(false);
-
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
-
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [role, setRole] = useState("user");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
-
   const [user, setUser] = useState(null);
-
+  const { cartItems, removeFromCart, getTotalPrice } = useContext(CartContext);
   const navigate = useNavigate();
 
-  const getUserFromToken = () => {
+  // Funzione per ottenere l'utente dai dati salvati nel localStorage
+  const getUserFromLocalStorage = () => {
     const token = localStorage.getItem("token");
-    if (token) {
-      return "USER1234";
+    const role = localStorage.getItem("role");
+    const email = localStorage.getItem("email");
+
+    if (token && role && email) {
+      return { email, role };
+    } else {
+      return null;
     }
-    return null;
   };
+
+  // Recuperiamo l'utente dal localStorage al caricamento della pagina
+  useEffect(() => {
+    const loggedUser = getUserFromLocalStorage();
+    if (loggedUser) {
+      setUser(loggedUser);
+    }
+  }, []); // Effettua il fetch solo una volta al caricamento della pagina
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -59,16 +69,18 @@ export default function Header() {
         throw new Error(data.message || "Errore nel login");
       }
 
-      // Salva il token nel localStorage
+      // Salviamo il token, il ruolo e l'email nel localStorage
       localStorage.setItem("token", data.token);
+      localStorage.setItem("role", data.role);
+      localStorage.setItem("email", loginEmail);
 
-      // Successo nel login
       setSuccess("Login effettuato con successo!");
       setLoginEmail("");
       setLoginPassword("");
       setShowLogin(false);
 
-      setUser(getUserFromToken());
+      // Aggiorniamo lo stato dell'utente
+      setUser({ email: loginEmail, role: data.role });
 
       navigate("/");
     } catch (err) {
@@ -79,17 +91,14 @@ export default function Header() {
   };
 
   const handleLogout = () => {
+    // Rimuoviamo i dati dell'utente dal localStorage
     localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("email");
+
     setUser(null);
     navigate("/");
   };
-
-  useEffect(() => {
-    const loggedUser = getUserFromToken();
-    if (loggedUser) {
-      setUser(loggedUser);
-    }
-  }, []);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -101,7 +110,7 @@ export default function Header() {
       const response = await fetch("http://localhost:3001/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ firstname, lastname, email, password }),
+        body: JSON.stringify({ firstname, lastname, email, password, role }),
       });
 
       const data = await response.json();
@@ -115,6 +124,7 @@ export default function Header() {
       setLastname("");
       setEmail("");
       setPassword("");
+      setRole("user"); // Reset del ruolo
     } catch (err) {
       setError(err.message);
     } finally {
@@ -124,7 +134,6 @@ export default function Header() {
 
   return (
     <>
-      {/* Navbar */}
       <Navbar expand="lg" className="custom-navbar">
         <Container>
           <Navbar.Brand className="p-0">
@@ -154,19 +163,22 @@ export default function Header() {
                 </>
               ) : (
                 <>
-                  <Nav.Link href="#">{user}</Nav.Link>{" "}
-                  <Nav.Link onClick={handleLogout}>ESCI</Nav.Link>{" "}
+                  <Nav.Link href="#">{user.email}</Nav.Link>
+                  <Nav.Link onClick={handleLogout}>ESCI</Nav.Link>
                 </>
               )}
               <Nav.Link className="cart-icon" onClick={() => setShowCart(true)}>
                 <i className="bi bi-basket-fill"></i>
+                {cartItems.length > 0 && (
+                  <span className="cart-count">{cartItems.length}</span>
+                )}
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
 
-      {/* Modale di registrazione */}
+      {/* Modal per la registrazione */}
       <Modal show={showRegister} onHide={() => setShowRegister(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>Registrati</Modal.Title>
@@ -220,6 +232,19 @@ export default function Header() {
               />
             </Form.Group>
 
+            <Form.Group controlId="registerRole">
+              <Form.Label>Ruolo</Form.Label>
+              <Form.Control
+                as="select"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                required
+              >
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </Form.Control>
+            </Form.Group>
+
             <Button
               variant="primary"
               className="mt-3"
@@ -232,7 +257,7 @@ export default function Header() {
         </Modal.Body>
       </Modal>
 
-      {/* Modale del login */}
+      {/* Modal per il login */}
       <Modal show={showLogin} onHide={() => setShowLogin(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>Accedi</Modal.Title>
@@ -276,13 +301,40 @@ export default function Header() {
         </Modal.Body>
       </Modal>
 
+      {/* Modale carrello */}
       <Modal show={showCart} onHide={() => setShowCart(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>Carrello</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* Contenuto del carrello, vuoto per ora */}
-          <p>Il carrello è vuoto!</p>
+          {cartItems.length === 0 ? (
+            <p>Il carrello è vuoto!</p>
+          ) : (
+            <div>
+              {cartItems.map((item, index) => (
+                <div key={index} className="cart-item">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="cart-item-image"
+                  />
+                  <span className="cart-item-name">{item.name}</span>
+                  <span className="cart-item-price">${item.price}</span>
+                  <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={() => removeFromCart(index)}
+                  >
+                    ✕
+                  </Button>
+                </div>
+              ))}
+              {/* Mostra il totale */}
+              <div className="cart-total">
+                <strong>Totale: ${getTotalPrice()}</strong>
+              </div>
+            </div>
+          )}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowCart(false)}>

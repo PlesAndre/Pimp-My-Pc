@@ -5,7 +5,7 @@ import mastercard from "../../assets/img_pagamenti/mastercard.png";
 import paypal from "../../assets/img_pagamenti/paypal.png";
 import cv from "../../assets/cv/Plescan Andrei Leonard - CV.pdf";
 import { Container, Col, Button } from "react-bootstrap";
-import "./style.css";
+import "./footer.css";
 
 export default function Footer() {
   return (

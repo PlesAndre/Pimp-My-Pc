@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
-import "./style.css";
+import "./best_setups.css";
 
 export default function BestSetups() {
   const [setups, setSetups] = useState([]);

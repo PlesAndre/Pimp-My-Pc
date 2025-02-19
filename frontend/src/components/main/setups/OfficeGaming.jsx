@@ -3,7 +3,7 @@ import gaming from "../../../assets/img_setups/gaming_setup.jpeg";
 import office from "../../../assets/img_setups/office_setup.jpeg";
 import workstation from "../../../assets/img_setups/workstation.jpeg";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import "./style.css";
+import "./office_gaming.css";
 import { Link } from "react-router-dom";
 
 export default function OfficeGaming() {

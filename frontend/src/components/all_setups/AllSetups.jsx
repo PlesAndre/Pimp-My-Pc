@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./style.css";
+import "./all_setups.css";
 
 export default function AllSetups() {
   const [setups, setSetups] = useState([]);
+  const userRole = localStorage.getItem("role"); // Recupero il ruolo dell'utente dal localStorage
 
   const fetchSetups = async () => {
     try {
@@ -23,6 +24,21 @@ export default function AllSetups() {
   return (
     <Container className="mt-5">
       <h2 className="text-center mb-4 text-light">I NOSTRI SETUPS</h2>
+
+      {/* Aggiungi il pulsante "Aggiungi Setup" solo per l'admin */}
+      {userRole === "admin" && (
+        <div className="d-flex justify-content-center mb-4">
+          <Button
+            as={Link}
+            to="/add-setup" // Assicurati che questa rotta esista
+            variant="warning"
+            className="mx-2"
+          >
+            Aggiungi Setup
+          </Button>
+        </div>
+      )}
+
       <Row>
         {setups.map((setup) => (
           <Col md={6} key={setup._id} className="mb-4">

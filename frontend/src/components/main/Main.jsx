@@ -2,7 +2,7 @@ import React from "react";
 import amd from "../../assets/img_carosello/amd.jpeg";
 import intel from "../../assets/img_carosello/intel.jpeg";
 import socials from "../../assets/img_carosello/socials.jpeg";
-import "./style.css";
+import "./main.css";
 import { Container, Carousel } from "react-bootstrap";
 import OfficeGaming from "./setups/OfficeGaming";
 import BestSetups from "./best_setups/BestSetups";

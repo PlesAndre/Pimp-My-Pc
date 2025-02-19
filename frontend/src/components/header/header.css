@@ -1,0 +1,58 @@
+/* Stile per il logo */
+.logo-brand {
+  width: 80px;
+}
+
+/* Stile per la navbar personalizzata */
+.custom-navbar {
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.95) 20%,
+    rgba(84, 24, 119, 0.8) 80%
+  );
+}
+
+.nav-link {
+  font-size: 22px !important;
+  color: #99f8f8 !important;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #ffcb00 !important;
+  transform: scale(1.1);
+}
+
+.navbar-toggler-light {
+  background-color: #9005b3 !important;
+  border-color: #ddd !important;
+  margin-right: 10px;
+}
+
+.navbar-toggler-light .navbar-toggler-icon {
+  background-color: #9005b3 !important;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding: 8px 0;
+}
+
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-count {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 3px 8px;
+  font-size: 12px;
+  margin-left: 5px;
+}
