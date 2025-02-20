@@ -135,7 +135,7 @@ export default function Header() {
   return (
     <>
       <Navbar expand="lg" className="custom-navbar">
-        <Container>
+        <Container className="p-0">
           <Navbar.Brand className="p-0">
             <img className="logo-brand" src={logo} alt="logo" />
           </Navbar.Brand>

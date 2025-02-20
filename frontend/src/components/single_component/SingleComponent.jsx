@@ -30,7 +30,7 @@ export default function SingleComponent() {
 
   return (
     <Container className="mt-5 container-component">
-      <Card className="product-card shadow-sm">
+      <Card>
         <Card.Img
           variant="top"
           src={component.image}
@@ -38,22 +38,23 @@ export default function SingleComponent() {
           className="card-img-top"
         />
         <Card.Body>
-          <Card.Title className="product-title">{component.name}</Card.Title>
-          <Card.Text className="product-description">
-            {component.description}
-          </Card.Text>
+          <Card.Title>{component.name}</Card.Title>
+          <Card.Text>{component.description}</Card.Text>
           <Card.Text className="text-primary">
             <strong>Prezzo:</strong> ${component.price}
           </Card.Text>
-          <Button
-            variant="primary"
-            className="btn-ecommerce"
-            onClick={() =>
-              addToCart(component.image, component.name, component.price)
-            }
-          >
-            AGGIUNGI AL CARRELLO
-          </Button>
+
+          <div className="d-flex justify-content-center mt-3">
+            <Button
+              variant="primary"
+              className="btn-ecommerce"
+              onClick={() =>
+                addToCart(component.image, component.name, component.price)
+              }
+            >
+              AGGIUNGI AL CARRELLO
+            </Button>
+          </div>
         </Card.Body>
       </Card>
     </Container>

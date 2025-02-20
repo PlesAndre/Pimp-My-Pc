@@ -8,11 +8,11 @@ import { Link } from "react-router-dom";
 
 export default function OfficeGaming() {
   return (
-    <Container className="container-setups mt-5">
-      <Row className="mb-3">
-        <h2 className="text-center mt-2">PC DESKTOP PERSONALIZZATI</h2>
+    <Container className="container-setups-category mt-5">
+      <Row className="mb-3 p-4 gap-2">
+        <h2 className="text-center mt-3">PC DESKTOP PERSONALIZZATI</h2>
         <Col>
-          <Card className="setup-card border-0">
+          <Card className="setup-card-category border-0">
             <Card.Img className="img-fluid" variant="top" src={office} />
             <Card.Body className="d-flex flex-column">
               <Card.Title className="text-center">CASA/UFFICIO</Card.Title>
@@ -32,7 +32,7 @@ export default function OfficeGaming() {
           </Card>
         </Col>
         <Col>
-          <Card className="setup-card border-0">
+          <Card className="setup-card-category border-0">
             <Card.Img className="img-fluid" variant="top" src={gaming} />
             <Card.Body className="d-flex flex-column">
               <Card.Title className="text-center">GAMING/STREAMING</Card.Title>
@@ -52,7 +52,7 @@ export default function OfficeGaming() {
           </Card>
         </Col>
         <Col>
-          <Card className="setup-card border-0">
+          <Card className="setup-card-category border-0">
             <Card.Img className="img-fluid" variant="top" src={workstation} />
             <Card.Body className="d-flex flex-column">
               <Card.Title className="text-center">WORKSTATION</Card.Title>

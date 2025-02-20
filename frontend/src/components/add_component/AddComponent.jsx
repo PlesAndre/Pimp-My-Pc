@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Button, Form, Alert } from "react-bootstrap";
+import { Button, Form, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import "./add_component.css";
 
 export default function AddComponent() {
   const [name, setName] = useState("");
@@ -11,30 +10,28 @@ export default function AddComponent() {
   const [image, setImage] = useState("");
   const [ratings, setRatings] = useState("");
   const [stock, setStock] = useState("");
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
-    setSuccess(null);
 
     try {
-      const response = await fetch("http://localhost:3001/add-component", {
+      const newComponent = {
+        name: e.target.name.value,
+        brand: e.target.brand.value,
+        description: e.target.description.value,
+        price: e.target.price.value,
+        image: e.target.image.value,
+        ratings: e.target.ratings.value,
+        stock: e.target.stock.value,
+      };
+
+      const response = await fetch("http://localhost:3001/api/components/new", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          name,
-          brand,
-          description,
-          price,
-          image,
-          ratings,
-          stock,
-        }),
+        body: JSON.stringify(newComponent),
       });
 
       const data = await response.json();
@@ -45,7 +42,6 @@ export default function AddComponent() {
         );
       }
 
-      setSuccess("Componente aggiunto con successo!");
       setName("");
       setBrand("");
       setDescription("");
@@ -54,21 +50,22 @@ export default function AddComponent() {
       setRatings("");
       setStock("");
 
-      navigate("/");
-    } catch (err) {
-      setError(err.message);
+      navigate("/components");
+    } catch (error) {
+      console.log(error);
     }
   };
 
   return (
-    <div className="container">
-      <h2 className="text-light">Aggiungi Componente</h2>
+    <Container>
+      <h2 className="text-light text-center my-5">AGGIUNGI COMPONENTE</h2>
 
-      {error && <Alert variant="danger">{error}</Alert>}
-      {success && <Alert variant="success">{success}</Alert>}
-
-      <Form className="text-light" onSubmit={handleSubmit}>
-        <Form.Group controlId="name">
+      <Form
+        className="text-light w-50"
+        style={{ margin: "0 auto" }}
+        onSubmit={handleSubmit}
+      >
+        <Form.Group className="mb-3" controlId="name">
           <Form.Label>Nome del Componente</Form.Label>
           <Form.Control
             type="text"
@@ -79,7 +76,7 @@ export default function AddComponent() {
           />
         </Form.Group>
 
-        <Form.Group controlId="brand">
+        <Form.Group className="mb-3" controlId="brand">
           <Form.Label>Marca</Form.Label>
           <Form.Control
             type="text"
@@ -90,7 +87,7 @@ export default function AddComponent() {
           />
         </Form.Group>
 
-        <Form.Group controlId="description">
+        <Form.Group className="mb-3" controlId="description">
           <Form.Label>Descrizione</Form.Label>
           <Form.Control
             type="text"
@@ -101,7 +98,7 @@ export default function AddComponent() {
           />
         </Form.Group>
 
-        <Form.Group controlId="price">
+        <Form.Group className="mb-3" controlId="price">
           <Form.Label>Prezzo</Form.Label>
           <Form.Control
             type="number"
@@ -112,7 +109,7 @@ export default function AddComponent() {
           />
         </Form.Group>
 
-        <Form.Group controlId="image">
+        <Form.Group className="mb-3" controlId="image">
           <Form.Label>Immagine URL</Form.Label>
           <Form.Control
             type="text"
@@ -123,7 +120,7 @@ export default function AddComponent() {
           />
         </Form.Group>
 
-        <Form.Group controlId="ratings">
+        <Form.Group className="mb-3" controlId="ratings">
           <Form.Label>Valutazioni</Form.Label>
           <Form.Control
             type="text"
@@ -145,10 +142,12 @@ export default function AddComponent() {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Aggiungi Componente
-        </Button>
+        <div className="d-flex justify-content-center">
+          <Button className="mt-3" variant="primary" type="submit">
+            Aggiungi Componente
+          </Button>
+        </div>
       </Form>
-    </div>
+    </Container>
   );
 }

@@ -1,4 +1,4 @@
-.container-setups {
+.container-setups-category {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,8 +15,8 @@
   padding: 2rem;
 }
 
-.setup-card {
+.setup-card-category {
   width: 100%;
   height: 93% !important;
-  margin-top: 50px;
+  margin-top: 40px;
 }

@@ -1,0 +1,24 @@
+.card-image-setups {
+  height: 500px;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.setup-card:hover .card-image {
+  transform: scale(1.05);
+}
+
+.price-container-card {
+  background-color: #3498db;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  width: 50%;
+  margin: 10px auto;
+  text-align: center;
+}

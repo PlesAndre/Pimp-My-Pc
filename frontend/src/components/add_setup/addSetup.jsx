@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Button, Form, Alert } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import "./add_Setup.css";
 
 export default function AddSetup() {
   const [name, setName] = useState("");
@@ -11,11 +10,16 @@ export default function AddSetup() {
   const [image, setImage] = useState("");
   const [ratings, setRatings] = useState("");
   const [stock, setStock] = useState("");
-  const [components, setComponents] = useState(
-    Array(7).fill({ name: "", description: "" })
-  );
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
+  const [components, setComponents] = useState([
+    { name: "", description: "" },
+    { name: "", description: "" },
+    { name: "", description: "" },
+    { name: "", description: "" },
+    { name: "", description: "" },
+    { name: "", description: "" },
+    { name: "", description: "" },
+  ]);
+
   const navigate = useNavigate();
 
   // Gestisce il cambiamento di nome e descrizione per ogni componente
@@ -27,11 +31,9 @@ export default function AddSetup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
-    setSuccess(null);
 
     try {
-      const response = await fetch("http://localhost:3001/add-setup", {
+      const response = await fetch("http://localhost:3001/api/setups/new", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,7 +56,6 @@ export default function AddSetup() {
         throw new Error(data.message || "Errore durante l'aggiunta del setup");
       }
 
-      setSuccess("Setup aggiunto con successo!");
       setName("");
       setDescription("");
       setCategory("");
@@ -64,22 +65,22 @@ export default function AddSetup() {
       setStock("");
       setComponents(Array(7).fill({ name: "", description: "" }));
 
-      navigate("/");
-    } catch (err) {
-      setError(err.message);
+      navigate("/setups");
+    } catch (error) {
+      console.log(error);
     }
   };
 
   return (
-    <div className="container">
-      <h2 className="text-light">Aggiungi Setup</h2>
-
-      {error && <Alert variant="danger">{error}</Alert>}
-      {success && <Alert variant="success">{success}</Alert>}
-
-      <Form className="text-light" onSubmit={handleSubmit}>
+    <Container>
+      <h2 className="text-center text-light my-5">AGGIUNGI SETUP</h2>
+      <Form
+        style={{ margin: "0 auto" }}
+        className="text-light w-50"
+        onSubmit={handleSubmit}
+      >
         {/* Nome e descrizione del setup */}
-        <Form.Group controlId="name">
+        <Form.Group className="mb-3" controlId="name">
           <Form.Label>Nome del Setup</Form.Label>
           <Form.Control
             type="text"
@@ -90,7 +91,7 @@ export default function AddSetup() {
           />
         </Form.Group>
 
-        <Form.Group controlId="description">
+        <Form.Group className="mb-3" controlId="description">
           <Form.Label>Descrizione del Setup</Form.Label>
           <Form.Control
             type="text"
@@ -101,7 +102,7 @@ export default function AddSetup() {
           />
         </Form.Group>
 
-        <Form.Group controlId="category">
+        <Form.Group className="mb-3" controlId="category">
           <Form.Label>Categoria</Form.Label>
           <Form.Control
             type="text"
@@ -112,7 +113,7 @@ export default function AddSetup() {
           />
         </Form.Group>
 
-        <Form.Group controlId="price">
+        <Form.Group className="mb-3" controlId="price">
           <Form.Label>Prezzo</Form.Label>
           <Form.Control
             type="number"
@@ -123,7 +124,7 @@ export default function AddSetup() {
           />
         </Form.Group>
 
-        <Form.Group controlId="image">
+        <Form.Group className="mb-3" controlId="image">
           <Form.Label>Immagine URL</Form.Label>
           <Form.Control
             type="text"
@@ -134,10 +135,10 @@ export default function AddSetup() {
           />
         </Form.Group>
 
-        <Form.Group controlId="ratings">
+        <Form.Group className="mb-3" controlId="ratings">
           <Form.Label>Valutazioni</Form.Label>
           <Form.Control
-            type="text"
+            type="number"
             placeholder="Valutazioni (es. 4.5)"
             value={ratings}
             onChange={(e) => setRatings(e.target.value)}
@@ -156,15 +157,15 @@ export default function AddSetup() {
           />
         </Form.Group>
 
-        {/* 7 Componenti */}
-        <h4>Componenti (max 7)</h4>
+        {/* Componenti */}
+        <h4 className="text-center mt-5">COMPONENTI</h4>
         {components.map((component, index) => (
           <div key={index}>
-            <Form.Group controlId={`component-name-${index}`}>
-              <Form.Label>Nome del Componente</Form.Label>
+            <Form.Group className="mb-1" controlId={`component-name-${index}`}>
+              <Form.Label></Form.Label>
               <Form.Control
                 type="text"
-                placeholder={`Nome del componente`}
+                placeholder={`(CPU,GPU,...)`}
                 value={component.name}
                 onChange={(e) =>
                   handleComponentChange(index, "name", e.target.value)
@@ -173,11 +174,13 @@ export default function AddSetup() {
               />
             </Form.Group>
 
-            <Form.Group controlId={`component-description-${index}`}>
-              <Form.Label>Descrizione del Componente {index + 1}</Form.Label>
+            <Form.Group
+              className="mb-4"
+              controlId={`component-description-${index}`}
+            >
               <Form.Control
                 type="text"
-                placeholder={`Descrizione del componente ${index + 1}`}
+                placeholder={`Descrizione ${index + 1}`}
                 value={component.description}
                 onChange={(e) =>
                   handleComponentChange(index, "description", e.target.value)
@@ -188,10 +191,12 @@ export default function AddSetup() {
           </div>
         ))}
 
-        <Button variant="primary" type="submit">
-          Aggiungi Setup
-        </Button>
+        <div className="d-flex justify-content-center">
+          <Button className="mt-3" variant="primary" type="submit">
+            Aggiungi Setup
+          </Button>
+        </div>
       </Form>
-    </div>
+    </Container>
   );
 }

@@ -31,32 +31,27 @@ export default function BestSetups() {
                   <p>{setup.name}</p>
                 </div>
 
-                <div className="img-wrapper">
+                <div>
                   <img
-                    src={setup.image || "default-image.jpg"}
-                    alt={setup.name || "Default Setup"}
-                    className="setup-image"
+                    src={setup.image}
+                    alt={setup.name}
+                    className="setups-image-card"
                   />
                 </div>
 
-                <div className="price-container">
-                  <span className="price-text">{setup.price || "N/A"}</span>
+                <div className="best-price-container">
+                  <span className="price-text">{setup.price}</span>
                   <span className="price-symbol">€</span>
                 </div>
 
                 <div className="products-points-holder mt-3 text-center">
                   <ul className="setup-components">
-                    {Array.isArray(setup.components) &&
-                    setup.components.length > 0 ? (
-                      setup.components.map((component, index) => (
-                        <li key={index}>
-                          <strong>{component.name}</strong>:{" "}
-                          {component.description}
-                        </li>
-                      ))
-                    ) : (
-                      <li>No components available</li>
-                    )}
+                    {setup.components.map((component, index) => (
+                      <li key={index}>
+                        <strong>{component.name}</strong>
+                        {component.description}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </Card>

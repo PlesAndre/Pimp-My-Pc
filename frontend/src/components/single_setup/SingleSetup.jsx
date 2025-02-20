@@ -33,7 +33,7 @@ export default function SingleSetup() {
 
   return (
     <Container className="mt-5 container-setup">
-      <Card className="product-card">
+      <Card>
         <Card.Img
           variant="top"
           src={setup.image}
@@ -41,10 +41,8 @@ export default function SingleSetup() {
           className="card-img-top-setup"
         />
         <Card.Body>
-          <Card.Title className="product-title">{setup.name}</Card.Title>
-          <Card.Text className="product-description mb-3">
-            {setup.description}
-          </Card.Text>
+          <Card.Title>{setup.name}</Card.Title>
+          <Card.Text className=" mb-3">{setup.description}</Card.Text>
           <Card.Text className="text-primary mb-3">
             <strong>Prezzo:</strong> €{setup.price}
           </Card.Text>
@@ -64,13 +62,15 @@ export default function SingleSetup() {
               ))}
             </ul>
           </div>
-          <Button
-            variant="primary"
-            className="btn-ecommerce"
-            onClick={() => addToCart(setup.image, setup.name, setup.price)}
-          >
-            AGGIUNGI AL CARRELLO
-          </Button>
+          <div className="d-flex justify-content-center mt-3">
+            <Button
+              variant="primary"
+              className="btn-ecommerce"
+              onClick={() => addToCart(setup.image, setup.name, setup.price)}
+            >
+              AGGIUNGI AL CARRELLO
+            </Button>
+          </div>
         </Card.Body>
       </Card>
     </Container>

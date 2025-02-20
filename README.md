@@ -7,6 +7,7 @@ Progetto Capstone, sviluppatto come parte del percorso formativo di Epicode. Si 
 🎯 Obiettivi
 
 La domande non è, quali obiettivi voglio raggiungere, la vera domanda è, come posso semplificare l'accquisto del prodotto per una persona non esperta?
+
 - Fornire informazioni chiare e dettagliate
 - Impostare configurazioni designate per la categoria desiderata ( gaming / ufficio / streaming )
 - Mettere a disposizione uno strumento user-friendly con UX/UI semplice e intuitiva
@@ -15,21 +16,20 @@ La domande non è, quali obiettivi voglio raggiungere, la vera domanda è, come 
 💻 Tecnologie impiegate
 
 Ecco le principali tecnologie usate nel progetto:
-FRONTEND 
+FRONTEND
+
 - React
 - Boostrap
 - CSS
 
-BACKEND 
+BACKEND
+
 - Express.js
 - Node.js
 - MongoDB
 
-UPLOAD FILE/IMG
-- Cloudinary
-- Multer
-
 Autenticazione ( da chiarire )
+
 - JWT / Hash
 - Clerk
-- OAuth 
+- OAuth

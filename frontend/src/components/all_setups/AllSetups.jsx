@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./all_setups.css";
+import "./setups.css";
 
 export default function AllSetups() {
   const [setups, setSetups] = useState([]);
@@ -22,18 +22,13 @@ export default function AllSetups() {
   }, []);
 
   return (
-    <Container className="mt-5">
+    <Container className="mt-5 w-75">
       <h2 className="text-center mb-4 text-light">I NOSTRI SETUPS</h2>
 
       {/* Aggiungi il pulsante "Aggiungi Setup" solo per l'admin */}
       {userRole === "admin" && (
-        <div className="d-flex justify-content-center mb-4">
-          <Button
-            as={Link}
-            to="/add-setup" // Assicurati che questa rotta esista
-            variant="warning"
-            className="mx-2"
-          >
+        <div className="d-flex justify-content-center mb-5">
+          <Button as={Link} to="/setup/new" variant="warning" className="mx-2">
             Aggiungi Setup
           </Button>
         </div>
@@ -42,7 +37,7 @@ export default function AllSetups() {
       <Row>
         {setups.map((setup) => (
           <Col md={6} key={setup._id} className="mb-4">
-            <Card className="setup-card shadow-lg border-0 rounded-3 d-flex flex-column">
+            <Card className="border-0 rounded-3 h-100">
               <Card.Img
                 src={setup.image}
                 alt={setup.name}
@@ -52,10 +47,10 @@ export default function AllSetups() {
                 <Card.Title className="text-center font-weight-bold text-dark mb-3">
                   {setup.name}
                 </Card.Title>
-                <Card.Text className="text-center text-light mb-3 price-container w-25">
+                <Card.Text className="text-center text-light mb-3 price-container-card w-25">
                   ${setup.price}
                 </Card.Text>
-                <Card.Text className="mb-4">
+                <Card.Text className="mt-4">
                   <ul className="list-unstyled ps-3">
                     {setup.components.map((component, index) => (
                       <li key={index} className="text-muted">
@@ -70,7 +65,7 @@ export default function AllSetups() {
                     as={Link}
                     to={`/setups/${setup._id}`}
                     variant="outline-primary"
-                    className="w-100 py-2 rounded-3 shadow-sm"
+                    className="w-50 py-2 rounded-3 shadow-sm"
                   >
                     View Details
                   </Button>

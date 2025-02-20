@@ -19,25 +19,6 @@ const createSetup = async (req, res, next) => {
   }
 };
 
-const updateSetup = async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const updateSet = await PcSetup.findByIdAndUpdate(id, req.body);
-    res.status(200).json("Configurazione aggiornata correttamente");
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const deleteSetup = async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const deleteSet = await PcSetup.findByIdAndDelete({ _id: id });
-    res.status(200).json("Configurazione cancellata corretamente");
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 const getSetupById = async (req, res, next) => {
   try {
@@ -50,4 +31,4 @@ const getSetupById = async (req, res, next) => {
   }
 };
 
-export { getAllSetups, createSetup, updateSetup, deleteSetup, getSetupById };
+export { getAllSetups, createSetup, getSetupById };

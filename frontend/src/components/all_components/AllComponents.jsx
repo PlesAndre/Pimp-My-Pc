@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Card, Button, Row, Col, Container, Alert } from "react-bootstrap";
+import { Card, Button, Row, Col, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./all_components.css";
 
 export default function AllComponents() {
   const [components, setComponents] = useState([]);
@@ -24,7 +23,7 @@ export default function AllComponents() {
   const userRole = localStorage.getItem("role");
 
   return (
-    <Container className="mt-5 container-components">
+    <Container className="mt-5 components-wrapper">
       <h2 className="text-center mb-4 text-light">I NOSTRI COMPONENTI</h2>
 
       {/* Mostra il pulsante "Aggiungi Componente" solo per gli admin */}
@@ -32,7 +31,7 @@ export default function AllComponents() {
         <div className="mb-4 text-center">
           <Button
             as={Link}
-            to="/add-component" // Assicurati che questa rotta esista
+            to="/component/new"
             variant="warning"
             className="mx-2"
           >
@@ -44,7 +43,7 @@ export default function AllComponents() {
       <Row>
         {components.map((component) => (
           <Col md={6} key={component._id} className="mb-4 mt-5">
-            <Card className="ecommerce-card shadow-sm border-0 rounded">
+            <Card className="ecommerce-card">
               <Card.Img
                 variant="top"
                 src={component.image}

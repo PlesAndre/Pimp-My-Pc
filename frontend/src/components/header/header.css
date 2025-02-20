@@ -1,9 +1,9 @@
-/* Stile per il logo */
+/* Logo */
 .logo-brand {
   width: 80px;
 }
 
-/* Stile per la navbar personalizzata */
+/* Navbar */
 .custom-navbar {
   background: linear-gradient(
     to bottom,
@@ -33,6 +33,8 @@
   background-color: #9005b3 !important;
 }
 
+
+/* Carrello */
 .cart-item {
   display: flex;
   align-items: center;

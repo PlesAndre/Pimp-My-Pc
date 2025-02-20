@@ -1,4 +1,3 @@
-import { get } from "mongoose";
 import Components from "../models/singleComponent.js";
 
 const getAllComponents = async (req, res, next) => {
@@ -20,26 +19,6 @@ const createComponent = async (req, res, next) => {
   }
 };
 
-const updateComponent = async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const updateComp = await Components.findByIdAndUpdate(id, req.body);
-    res.status(200).json("Componente aggiornato correttamente");
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const deleteComponent = async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const deleteComp = await Components.findByIdAndDelete({ _id: id });
-    res.status(200).json("Componente cancellato correttamente");
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 const getComponentById = async (req, res, next) => {
   try {
     const id = req.params.id;
@@ -51,10 +30,4 @@ const getComponentById = async (req, res, next) => {
   }
 };
 
-export {
-  getAllComponents,
-  createComponent,
-  deleteComponent,
-  getComponentById,
-  updateComponent,
-};
+export { getAllComponents, createComponent, getComponentById };

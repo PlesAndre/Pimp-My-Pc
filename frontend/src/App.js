@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
 
 import Footer from "./components/footer/Footer";
 import Main from "./components/main/Main";
@@ -10,7 +11,6 @@ import SingleComponent from "./components/single_component/SingleComponent";
 import SingleSetup from "./components/single_setup/SingleSetup";
 import AddComponent from "./components/add_component/AddComponent";
 import AddSetup from "./components/add_setup/addSetup";
-import "./App.css";
 import { CartProvider } from "./context/context";
 
 function App() {
@@ -24,8 +24,8 @@ function App() {
           <Route path="/setups/:id" element={<SingleSetup />} />
           <Route path="/components" element={<AllComponents />} />
           <Route path="/components/:id" element={<SingleComponent />} />
-          <Route path="/add-component" element={<AddComponent />} />
-          <Route path="/add-setup" element={<AddSetup />} />
+          <Route path="/component/new" element={<AddComponent />} />
+          <Route path="/setup/new" element={<AddSetup />} />
         </Routes>
         <Footer />
       </Router>
