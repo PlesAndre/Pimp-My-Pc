@@ -31,3 +31,15 @@ BACKEND
 
 Autenticazione 
 - JWT / Hash
+
+Per testare la funzionalità ADMIN nel login usate queste credenziali: 
+- Email = admintest@gmail.com
+- Password = 1234
+
+CRUD implementata:  
+- Create
+- Read
+
+CRUD non implementata: 
+- Delete = setups/componenti rimangono presenti nel DB anche se vanno fuori stock
+- Update = setups/componenti non vengono aggiornati perchè il nome e la scheda tecnica rimane invariabile
