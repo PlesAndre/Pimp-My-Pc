@@ -28,8 +28,5 @@ BACKEND
 - Node.js
 - MongoDB
 
-Autenticazione ( da chiarire )
-
+Autenticazione 
 - JWT / Hash
-- Clerk
-- OAuth
