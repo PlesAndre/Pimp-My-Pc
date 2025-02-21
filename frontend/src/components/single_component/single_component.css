@@ -1,6 +1,7 @@
 .container-component {
   max-width: 900px !important;
   margin: 0 auto;
+  margin-bottom: 240px;
   padding: 20px;
 }
 

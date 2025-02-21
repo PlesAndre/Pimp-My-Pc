@@ -23,12 +23,14 @@ server.get("/", (req, res) => {
 server.use("/api/components", componentsRouter);
 server.use("/api/setups", setupRouter);
 
+// Genera token per il JWT
 const generateToken = (userId) => {
   const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
     expiresIn: "1h",
   });
   return token;
 };
+
 server.post("/register", async (req, res) => {
   try {
     // Estrazione dei dati dalla richiesta

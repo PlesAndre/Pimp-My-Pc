@@ -7,8 +7,9 @@ import "./single_setup.css";
 export default function SingleSetup() {
   const { id } = useParams();
   const [setup, setSetup] = useState(null);
-  const { addToCart } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext); // Usa il context
 
+  // GET che prende solamente il prodotto specifico tramite "id"
   const fetchSetupDetails = async () => {
     try {
       const response = await fetch(`http://localhost:3001/api/setups/${id}`);

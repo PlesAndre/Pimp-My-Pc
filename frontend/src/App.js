@@ -1,7 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { CartProvider } from "./context/context";
 import "./App.css";
 
+// Componenti utilizzti
 import Footer from "./components/footer/Footer";
 import Main from "./components/main/Main";
 import Header from "./components/header/Header";
@@ -11,7 +13,6 @@ import SingleComponent from "./components/single_component/SingleComponent";
 import SingleSetup from "./components/single_setup/SingleSetup";
 import AddComponent from "./components/add_component/AddComponent";
 import AddSetup from "./components/add_setup/addSetup";
-import { CartProvider } from "./context/context";
 
 function App() {
   return (

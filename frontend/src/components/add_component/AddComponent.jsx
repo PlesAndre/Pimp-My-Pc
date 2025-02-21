@@ -16,6 +16,7 @@ export default function AddComponent() {
     e.preventDefault();
 
     try {
+      // Prende i valori all'interno del form e gli passa alla fetch
       const newComponent = {
         name: e.target.name.value,
         brand: e.target.brand.value,
@@ -26,6 +27,7 @@ export default function AddComponent() {
         stock: e.target.stock.value,
       };
 
+      // Fetch che manda i valori presi dal form nella collezione "components" tramite una POST
       const response = await fetch("http://localhost:3001/api/components/new", {
         method: "POST",
         headers: {
@@ -34,14 +36,11 @@ export default function AddComponent() {
         body: JSON.stringify(newComponent),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(
-          data.message || "Errore durante l'aggiunta del componente"
-        );
+        throw new Error(`${response.status}`);
       }
 
+      // Resetta i valori a stringa vuota
       setName("");
       setBrand("");
       setDescription("");

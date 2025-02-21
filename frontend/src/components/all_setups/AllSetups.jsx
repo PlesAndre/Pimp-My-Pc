@@ -5,8 +5,9 @@ import "./setups.css";
 
 export default function AllSetups() {
   const [setups, setSetups] = useState([]);
-  const userRole = localStorage.getItem("role"); // Recupero il ruolo dell'utente dal localStorage
+  const userRole = localStorage.getItem("role"); // Recupera il ruolo dell'utente dal localStorage
 
+  // GET che restituisce tutti i setups dalla collezione "complete_setups"
   const fetchSetups = async () => {
     try {
       const response = await fetch("http://localhost:3001/api/setups");
@@ -50,7 +51,7 @@ export default function AllSetups() {
                 <Card.Text className="text-center text-light mb-3 price-container-card w-25">
                   ${setup.price}
                 </Card.Text>
-                <Card.Text className="mt-4">
+                <div className="mt-4">
                   <ul className="list-unstyled ps-3">
                     {setup.components.map((component, index) => (
                       <li key={index} className="text-muted">
@@ -59,15 +60,15 @@ export default function AllSetups() {
                       </li>
                     ))}
                   </ul>
-                </Card.Text>
+                </div>
                 <div className="d-flex justify-content-center mt-auto">
                   <Button
                     as={Link}
                     to={`/setups/${setup._id}`}
-                    variant="outline-primary"
-                    className="w-50 py-2 rounded-3 shadow-sm"
+                    variant="primary"
+                    className="w-50"
                   >
-                    View Details
+                    DETTAGLI
                   </Button>
                 </div>
               </Card.Body>

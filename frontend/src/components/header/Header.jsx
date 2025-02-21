@@ -1,32 +1,50 @@
 import React, { useState, useEffect, useContext } from "react";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Alert from "react-bootstrap/Alert";
-import logo from "../../assets/logo.png";
+import {
+  Container,
+  Nav,
+  Navbar,
+  Modal,
+  Button,
+  Form,
+  Alert,
+} from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import "./header.css";
 import { CartContext } from "../../context/context";
+import "./header.css";
+
+// Logo
+import logo from "../../assets/logo.png";
 
 export default function Header() {
+  // Apre/Chiude la modale del carrello
   const [showCart, setShowCart] = useState(false);
+
+  // Apre/Chiude la modale della registrazione
   const [showRegister, setShowRegister] = useState(false);
+
+  // Apre/Chiude la modale dell'accesso
   const [showLogin, setShowLogin] = useState(false);
+
+  // State che prende i valori dal form di registrazione
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("user");
+
+  // State che prende i valori dal form di accesso
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+
+  // State con messaggi success/errore
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+
+  // Mostra/Non mostrare
   const [user, setUser] = useState(null);
+
   const { cartItems, removeFromCart, getTotalPrice } = useContext(CartContext);
+
   const navigate = useNavigate();
 
   // Funzione per ottenere l'utente dai dati salvati nel localStorage
@@ -42,17 +60,46 @@ export default function Header() {
     }
   };
 
-  // Recuperiamo l'utente dal localStorage al caricamento della pagina
+  // Recupera l'utente dal localStorage al caricamento della pagina
   useEffect(() => {
     const loggedUser = getUserFromLocalStorage();
     if (loggedUser) {
       setUser(loggedUser);
     }
-  }, []); // Effettua il fetch solo una volta al caricamento della pagina
+  }, []);
 
+  // Funzione che gestisce la registrazione
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setError(null);
+    setSuccess(null);
+
+    try {
+      const response = await fetch("http://localhost:3001/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ firstname, lastname, email, password, role }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`${response.status}`);
+      }
+
+      setSuccess("Registrazione avvenuta con successo! Ora puoi accedere.");
+      setFirstname("");
+      setLastname("");
+      setEmail("");
+      setPassword("");
+      setRole("user"); // Reset del ruolo
+      setShowRegister(false);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  // Funzione che gestisce l'accesso
   const handleLogin = async (e) => {
     e.preventDefault();
-    setLoading(true);
     setError(null);
     setSuccess(null);
 
@@ -66,10 +113,10 @@ export default function Header() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || "Errore nel login");
+        throw new Error(`${response.status}`);
       }
 
-      // Salviamo il token, il ruolo e l'email nel localStorage
+      // Salva il token, il ruolo e l'email nel localStorage
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.role);
       localStorage.setItem("email", loginEmail);
@@ -79,19 +126,17 @@ export default function Header() {
       setLoginPassword("");
       setShowLogin(false);
 
-      // Aggiorniamo lo stato dell'utente
+      // Aggiorna lo stato dell'utente
       setUser({ email: loginEmail, role: data.role });
 
       navigate("/");
     } catch (err) {
       setError(err.message);
-    } finally {
-      setLoading(false);
     }
   };
 
   const handleLogout = () => {
-    // Rimuoviamo i dati dell'utente dal localStorage
+    // Rimuove i dati dell'utente dal localStorage
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     localStorage.removeItem("email");
@@ -99,39 +144,6 @@ export default function Header() {
     setUser(null);
     navigate("/");
   };
-
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
-    setSuccess(null);
-
-    try {
-      const response = await fetch("http://localhost:3001/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ firstname, lastname, email, password, role }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || "Errore durante la registrazione");
-      }
-
-      setSuccess("Registrazione avvenuta con successo! Ora puoi accedere.");
-      setFirstname("");
-      setLastname("");
-      setEmail("");
-      setPassword("");
-      setRole("user"); // Reset del ruolo
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <>
       <Navbar expand="lg" className="custom-navbar">
@@ -245,13 +257,8 @@ export default function Header() {
               </Form.Control>
             </Form.Group>
 
-            <Button
-              variant="primary"
-              className="mt-3"
-              type="submit"
-              disabled={loading}
-            >
-              {loading ? "Registrazione in corso..." : "Registrati"}
+            <Button variant="primary" className="mt-3" type="submit">
+              Registrati
             </Button>
           </Form>
         </Modal.Body>
@@ -289,13 +296,8 @@ export default function Header() {
               />
             </Form.Group>
 
-            <Button
-              variant="success"
-              className="mt-3"
-              type="submit"
-              disabled={loading}
-            >
-              {loading ? "Accesso in corso..." : "Accedi"}
+            <Button variant="success" className="mt-3" type="submit">
+              Accedi
             </Button>
           </Form>
         </Modal.Body>

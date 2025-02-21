@@ -5,6 +5,7 @@ import "./best_setups.css";
 export default function BestSetups() {
   const [setups, setSetups] = useState([]);
 
+  // GET che restituisce tutti i setups dalla collezione "complete_setups"
   const fetchSetups = async () => {
     try {
       const response = await fetch("http://localhost:3001/api/setups");
@@ -24,6 +25,7 @@ export default function BestSetups() {
       <Row>
         <h2 className="text-center mt-2">CONFIGURAZIONI MIGLIORI</h2>
         <div className="scroll-container mb-4">
+          {/* Restituisce solo 4 elementi */}
           {setups.slice(0, 4).map((setup, index) => (
             <Col xs={12} sm={6} md={4} key={index}>
               <Card className="setup-wrapper d-flex flex-column">

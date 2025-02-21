@@ -1,11 +1,13 @@
 import React from "react";
+import { Container, Col, Button } from "react-bootstrap";
+import "./footer.css";
+
+// Immagini utilizzate
 import logo from "../../assets/logo.png";
 import visa from "../../assets/img_pagamenti/visa.png";
 import mastercard from "../../assets/img_pagamenti/mastercard.png";
 import paypal from "../../assets/img_pagamenti/paypal.png";
 import cv from "../../assets/cv/Plescan Andrei Leonard - CV.pdf";
-import { Container, Col, Button } from "react-bootstrap";
-import "./footer.css";
 
 export default function Footer() {
   return (
@@ -28,12 +30,7 @@ export default function Footer() {
 
         <Col className="text-center mb-4">
           <h5>Founder</h5>
-          <Button
-            variant="primary"
-            href={cv}
-            target="_blank"
-            size="lg"
-          >
+          <Button variant="primary" href={cv} target="_blank" size="lg">
             Visualizza il mio CV
           </Button>
         </Col>

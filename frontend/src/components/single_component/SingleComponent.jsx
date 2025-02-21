@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Card, Button, Container } from "react-bootstrap";
-import { CartContext } from "../../context/context"; // Importa il context
+import { CartContext } from "../../context/context";
 import "./single_component.css";
 
 export default function SingleComponent() {
@@ -9,6 +9,7 @@ export default function SingleComponent() {
   const [component, setComponent] = useState(null);
   const { addToCart } = useContext(CartContext); // Usa il context
 
+  // GET che prende solamente il prodotto specifico tramite "id"
   useEffect(() => {
     const fetchComponentDetails = async () => {
       try {
@@ -19,7 +20,7 @@ export default function SingleComponent() {
         const data = await response.json();
         setComponent(data);
       } catch (error) {
-        console.error("Errore nel fetch:", error);
+        console.log(error);
       }
     };
 
@@ -29,7 +30,7 @@ export default function SingleComponent() {
   if (!component) return <div>Loading...</div>;
 
   return (
-    <Container className="mt-5 container-component">
+    <Container className="h-100 mt-5 container-component">
       <Card>
         <Card.Img
           variant="top"

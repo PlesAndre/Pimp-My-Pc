@@ -10,6 +10,8 @@ export default function AddSetup() {
   const [image, setImage] = useState("");
   const [ratings, setRatings] = useState("");
   const [stock, setStock] = useState("");
+
+  // State che prende i valori dei "components"
   const [components, setComponents] = useState([
     { name: "", description: "" },
     { name: "", description: "" },
@@ -50,10 +52,8 @@ export default function AddSetup() {
         }),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.message || "Errore durante l'aggiunta del setup");
+        throw new Error(`${response.status}`);
       }
 
       setName("");
@@ -63,7 +63,7 @@ export default function AddSetup() {
       setImage("");
       setRatings("");
       setStock("");
-      setComponents(Array(7).fill({ name: "", description: "" }));
+      setComponents(Array(7).fill({ name: "", description: "" })); // Crea un array length di 7 e riempie ogni elemento con name e description
 
       navigate("/setups");
     } catch (error) {
@@ -157,7 +157,7 @@ export default function AddSetup() {
           />
         </Form.Group>
 
-        {/* Componenti */}
+        {/* Nome e descrizione dei componenti */}
         <h4 className="text-center mt-5">COMPONENTI</h4>
         {components.map((component, index) => (
           <div key={index}>

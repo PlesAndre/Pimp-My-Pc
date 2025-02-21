@@ -1,6 +1,5 @@
 import React, { createContext, useState } from "react";
 
-// Creazione del Context
 export const CartContext = createContext();
 
 // Provider del Carrello
@@ -12,10 +11,12 @@ export const CartProvider = ({ children }) => {
     setCartItems((prevCart) => [...prevCart, { image, name, price }]);
   };
 
+  // Funzione per rimuovere dal carrello
   const removeFromCart = (index) => {
-    setCartItems((prevCart) => prevCart.filter((_, i) => i !== index)); // Rimuove un prodotto
+    setCartItems((prevCart) => prevCart.filter((_, i) => i !== index));
   };
 
+  // Funzione che restituisce il prezzo totale
   const getTotalPrice = () => {
     return cartItems.reduce((total, item) => total + item.price, 0);
   };
