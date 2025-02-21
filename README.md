@@ -18,6 +18,7 @@ La domande non è, quali obiettivi voglio raggiungere, la vera domanda è, come 
 Ecco le principali tecnologie usate nel progetto:
 FRONTEND
 
+- Javascript
 - React
 - Boostrap
 - CSS
