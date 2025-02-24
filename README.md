@@ -15,7 +15,8 @@ La domande non è, quali obiettivi voglio raggiungere, la vera domanda è, come 
 
 💻 Tecnologie impiegate
 
-Ecco le principali tecnologie usate nel progetto:
+Principali tecnologie usate nel progetto:
+
 FRONTEND
 
 - Javascript
