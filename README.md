@@ -43,4 +43,4 @@ CRUD implementata:
 
 CRUD non implementata: 
 - Delete = setups/componenti rimangono presenti nel DB anche se vanno fuori stock
-- Update = setups/componenti non vengono aggiornati perchè il nome e la scheda tecnica rimane invariabile
+- Update = setups/componenti non vengono aggiornati perchè il nome e la scheda tecnica rimane invariata
