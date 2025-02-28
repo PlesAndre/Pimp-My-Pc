@@ -7,7 +7,7 @@ import logo from "../../assets/logo.png";
 import visa from "../../assets/img_pagamenti/visa.png";
 import mastercard from "../../assets/img_pagamenti/mastercard.png";
 import paypal from "../../assets/img_pagamenti/paypal.png";
-import cv from "../../assets/cv/Plescan Andrei Leonard - CV.pdf";
+import cv from "../../assets/cv/CV-Plescan Andrei Leonard.pdf";
 
 export default function Footer() {
   return (
