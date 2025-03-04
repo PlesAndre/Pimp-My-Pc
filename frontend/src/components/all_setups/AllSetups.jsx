@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./setups.css";
-import "dotenv/config";
 
 
 export default function AllSetups() {
@@ -12,7 +11,7 @@ export default function AllSetups() {
   // GET che restituisce tutti i setups dalla collezione "complete_setups"
   const fetchSetups = async () => {
     try {
-      const response = await fetch(`${process.env.BACKEND_URL}/api/setups`);
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/setups`);
       const data = await response.json();
       setSetups(data);
     } catch (error) {

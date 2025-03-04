@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import "dotenv/config";
 
 
 export default function AddSetup() {
@@ -38,7 +37,7 @@ export default function AddSetup() {
 
     try {
       const response = await fetch(
-        `${process.env.BACKEND_URL}/api/setups/new`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/setups/new`,
         {
           method: "POST",
           headers: {

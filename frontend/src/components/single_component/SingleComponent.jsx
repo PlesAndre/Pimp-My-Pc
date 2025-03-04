@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { Card, Button, Container } from "react-bootstrap";
 import { CartContext } from "../../context/context";
 import "./single_component.css";
-import "dotenv/config";
 
 
 export default function SingleComponent() {
@@ -16,7 +15,7 @@ export default function SingleComponent() {
     const fetchComponentDetails = async () => {
       try {
         const response = await fetch(
-          `${process.env.BACKEND_URL}/api/components/${id}`
+          `${process.env.REACT_APP_BACKEND_URL}/api/components/${id}`
         );
         if (!response.ok) throw new Error(`Errore: ${response.status}`);
         const data = await response.json();

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import "./best_setups.css";
-import "dotenv/config";
 
 
 export default function BestSetups() {
@@ -10,7 +9,7 @@ export default function BestSetups() {
   // GET che restituisce tutti i setups dalla collezione "complete_setups"
   const fetchSetups = async () => {
     try {
-      const response = await fetch(`${process.env.BACKEND_URL}/api/setups`);
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/setups`);
       const data = await response.json();
       setSetups(data);
     } catch (error) {

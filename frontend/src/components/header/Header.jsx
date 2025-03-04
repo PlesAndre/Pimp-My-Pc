@@ -11,8 +11,6 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/context";
 import "./header.css";
-import "dotenv/config";
-
 
 // Logo
 import logo from "../../assets/logo.png";
@@ -77,11 +75,14 @@ export default function Header() {
     setSuccess(null);
 
     try {
-      const response = await fetch(`${process.env.BACKEND_URL}/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ firstname, lastname, email, password, role }),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/register`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ firstname, lastname, email, password, role }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`${response.status}`);
@@ -106,11 +107,14 @@ export default function Header() {
     setSuccess(null);
 
     try {
-      const response = await fetch(`${process.env.BACKEND_URL}/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: loginEmail, password: loginPassword }),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: loginEmail, password: loginPassword }),
+        }
+      );
 
       const data = await response.json();
 

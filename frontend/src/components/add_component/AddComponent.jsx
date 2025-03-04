@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import "dotenv/config";
 
 export default function AddComponent() {
   const [name, setName] = useState("");
@@ -30,7 +29,7 @@ export default function AddComponent() {
 
       // Fetch che manda i valori presi dal form nella collezione "components" tramite una POST
       const response = await fetch(
-        `${process.env.BACKEND_URL}/api/components/new`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/components/new`,
         {
           method: "POST",
           headers: {
