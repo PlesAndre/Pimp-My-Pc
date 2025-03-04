@@ -10,7 +10,7 @@ import { router as setupRouter } from "./routes/completeSetupRoutes.js";
 
 const server = express();
 server.use(express.json());
-server.use(cors());
+server.use(cors({ origin: "*" }));
 connectDB();
 
 const port = 3001;
