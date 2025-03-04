@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import "dotenv/config";
+
 
 export default function AddSetup() {
   const [name, setName] = useState("");
@@ -35,22 +37,25 @@ export default function AddSetup() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3001/api/setups/new", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          description,
-          category,
-          price,
-          image,
-          ratings,
-          stock,
-          components,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.BACKEND_URL}/api/setups/new`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            description,
+            category,
+            price,
+            image,
+            ratings,
+            stock,
+            components,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`${response.status}`);

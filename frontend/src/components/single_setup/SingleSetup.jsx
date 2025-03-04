@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import { Card, Button, Container } from "react-bootstrap";
 import { CartContext } from "../../context/context";
 import "./single_setup.css";
+import "dotenv/config";
+
+
 
 export default function SingleSetup() {
   const { id } = useParams();
@@ -12,7 +15,9 @@ export default function SingleSetup() {
   // GET che prende solamente il prodotto specifico tramite "id"
   const fetchSetupDetails = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/api/setups/${id}`);
+      const response = await fetch(
+        `${process.env.BACKEND_URL}/api/setups/${id}`
+      );
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Card, Button, Row, Col, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "dotenv/config";
+
 
 export default function AllComponents() {
   const [components, setComponents] = useState([]);
@@ -9,7 +11,7 @@ export default function AllComponents() {
   // GET che restituisce tutti i componenti dalla collezione "componets"
   const fetchComponents = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/components");
+      const response = await fetch(`${process.env.BACKEND_URL}/api/components`);
       const data = await response.json();
       setComponents(data);
     } catch (error) {

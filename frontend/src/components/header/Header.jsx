@@ -11,6 +11,8 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/context";
 import "./header.css";
+import "dotenv/config";
+
 
 // Logo
 import logo from "../../assets/logo.png";
@@ -75,7 +77,7 @@ export default function Header() {
     setSuccess(null);
 
     try {
-      const response = await fetch("http://localhost:3001/register", {
+      const response = await fetch(`${process.env.BACKEND_URL}/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ firstname, lastname, email, password, role }),
@@ -104,7 +106,7 @@ export default function Header() {
     setSuccess(null);
 
     try {
-      const response = await fetch("http://localhost:3001/login", {
+      const response = await fetch(`${process.env.BACKEND_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: loginEmail, password: loginPassword }),
