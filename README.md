@@ -1,46 +1,47 @@
-<em>PIMP MY PC</em>
+# PIMP MY PC
 
-👨‍🏫 Presentazione
+## Presentazione 👨‍🏫
 
-Progetto Capstone, sviluppatto come parte del percorso formativo di Epicode. Si tratta di un Ecommerce che permette l'acquisto di singoli componenti per pc o varie configurazioni già assemblate. All'interno potrai ideare il tuo personal computer con molteplici opzioni, oppure, se non hai le idee chiare, potrai consultare la sezione delle configurazioni più richieste dagli utenti. Troverai dei prezzi davvero competitivi, dalla configurazione "budget-friendly" alla "most expensive" con i più recenti componenti sul mercato.
+Pimp My PC è un progetto Capstone sviluppato come parte del percorso formativo di Epicode. Si tratta di un ecommerce dedicato all'acquisto di singoli componenti per PC o di configurazioni pre-assemblate. Gli utenti possono progettare il proprio computer personalizzato scegliendo tra numerose opzioni, oppure esplorare configurazioni consigliate per gaming, ufficio o streaming.
 
-🎯 Obiettivi
+Il sito è pensato per offrire una navigazione intuitiva e soluzioni pratiche anche per chi non ha molta esperienza nel campo, con opzioni che vanno da configurazioni "economiche" a quelle "high-end" con i componenti più avanzati disponibili sul mercato.
 
-La domande non è, quali obiettivi voglio raggiungere, la vera domanda è, come posso semplificare l'accquisto del prodotto per una persona non esperta?
+## Obiettivi 🎯
+Il principale obiettivo del progetto è semplificare l'esperienza di acquisto per utenti non esperti, rispondendo alla domanda: "Come posso semplificare l'acquisto di un PC?"
 
-- Fornire informazioni chiare e dettagliate
-- Impostare configurazioni designate per la categoria desiderata ( gaming / ufficio / streaming )
-- Mettere a disposizione uno strumento user-friendly con UX/UI semplice e intuitiva
-- Garantire la miglior scelta nell'acquisto del proprio Pc
+Gli obiettivi specifici includono:
 
-💻 Tecnologie impiegate
+- Fornire informazioni chiare e dettagliate su ogni componente e configurazione.
+- Offrire configurazioni preimpostate per diverse categorie d'uso (gaming, ufficio, streaming).
+- Creare un'interfaccia utente semplice, user-friendly e con una UX/UI chiara e intuitiva.
+- Garantire la miglior scelta possibile nell'acquisto del proprio PC personalizzato.
+  
+## Tecnologie impiegate 💻
+Frontend
+- JavaScript (per la logica dell'interfaccia)
+- React (per lo sviluppo dell'interfaccia utente dinamica)
+- Bootstrap (per il design responsive e componenti pre-stilizzati)
+- CSS (per la personalizzazione dei layout e dello stile)
 
-Principali tecnologie usate nel progetto:
+Backend
+- Express.js (per la gestione delle rotte e delle API)
+- Node.js (per il server backend)
+- MongoDB (per il database NoSQL)
 
-FRONTEND
+Autenticazione
+- JWT (JSON Web Tokens) per l'autenticazione e la gestione delle sessioni utente
+- Hashing delle password per garantire la sicurezza delle credenziali utente
 
-- Javascript
-- React
-- Boostrap
-- CSS
+### Credenziali di accesso per funzionalità ADMIN 🔐 
+Per testare la funzionalità di ADMIN nel login, utilizza queste credenziali:
+- Email: admintest@gmail.com
+- Password: 1234
+  
+## Funzionalità Implementate ⚙️
+CRUD Implementato:
+- Create: Possibilità di aggiungere nuove configurazioni e componenti al sistema.
+- Read: Visualizzazione delle configurazioni e dei singoli componenti, con informazioni dettagliate su ogni prodotto.
 
-BACKEND
-
-- Express.js
-- Node.js
-- MongoDB
-
-Autenticazione 
-- JWT / Hash
-
-Per testare la funzionalità ADMIN nel login usate queste credenziali: 
-- Email = admintest@gmail.com
-- Password = 1234
-
-CRUD implementata:  
-- Create
-- Read
-
-CRUD non implementata: 
-- Delete = setups/componenti rimangono presenti nel DB anche se vanno fuori stock
-- Update = setups/componenti non vengono aggiornati perchè il nome e la scheda tecnica rimane invariata
+Funzionalità Non Implementate:
+- Delete: I componenti e le configurazioni non vengono rimossi automaticamente dal database quando vanno fuori stock. In futuro, questa funzionalità sarà aggiunta per mantenere il database aggiornato.
+- Update: I componenti e le configurazioni non vengono aggiornati nel sistema. Sebbene il nome e la scheda tecnica rimangano invariati, sarebbe utile poter modificare le informazioni dei prodotti (ad esempio, quando vengono aggiornati o ritirati dal mercato).
